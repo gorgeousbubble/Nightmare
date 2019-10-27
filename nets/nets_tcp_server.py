@@ -12,12 +12,12 @@ class TcpServer:
         self.Clients = []
         self.Executor = futures.ThreadPoolExecutor(max_workers=3)
         self.tcpServerSocket = socket(AF_INET, SOCK_STREAM)
+
+    def start(self):
         self.tcpServerSocket.bind(self.Addr)
         print('Start Tcp Server')
         print('Listen Tcp:{}'.format(self.Addr))
         self.tcpServerSocket.listen(5)
-
-    def start(self):
         while True:
             print('Loop waiting for connect...')
             tcpClientSocket, tcpClientAddr = self.tcpServerSocket.accept()
@@ -37,7 +37,7 @@ class TcpServer:
                         sock = v[0]
                         addr = v[1]
                         if sock == tcpClientSocket:
-                            print('[{}:{}] {}'.format(addr[0], addr[1], time.strftime(
+                            print('[{}:{}] {}'.format(self.Addr[0], str(self.Addr[1]), time.strftime(
                                 '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                             print('Local->Remote:{}'.format(data.decode('utf-8')))
                             info = '{}'.format(data.decode('utf-8'))
