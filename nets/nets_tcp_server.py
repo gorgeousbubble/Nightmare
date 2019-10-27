@@ -3,7 +3,7 @@ import time
 from socket import *
 
 
-class TCPServer:
+class TcpServer:
     def __init__(self, host='', port=6000):
         self.Host = host
         self.Port = port
@@ -30,24 +30,26 @@ class TCPServer:
             while True:
                 data = tcpClientSocket.recv(self.BufSize)
                 if data:
-                    print('[{}] {}'.format(tcpClientAddr, time.strftime(
+                    print('[{}:{}] {}'.format(tcpClientAddr[0], tcpClientAddr[1], time.strftime(
                         '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                     print('Remote->Local:{}'.format(data.decode('utf-8')))
                     for v in self.Clients:
                         sock = v[0]
                         addr = v[1]
                         if sock == tcpClientSocket:
+                            print('[{}:{}] {}'.format(addr[0], addr[1], time.strftime(
+                                '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
+                            print('Local->Remote:{}'.format(data.decode('utf-8')))
                             info = '{}'.format(data.decode('utf-8'))
                             sock.send(info.encode('utf-8'))
                 else:
-                    print('Remote host forcibly closed connect:{}'.format(
-                        tcpClientAddr))
-                    self.Clients.remove((tcpClientSocket, tcpClientAddr))
                     break
         finally:
+            print('Remote host forcibly closed connect:{}'.format(tcpClientAddr))
+            self.Clients.remove((tcpClientSocket, tcpClientAddr))
             tcpClientSocket.close()
 
 
 if __name__ == '__main__':
-    s = TCPServer()
+    s = TcpServer()
     s.start()
