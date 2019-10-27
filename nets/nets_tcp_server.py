@@ -1,4 +1,5 @@
 import concurrent.futures as futures
+import os
 import time
 from socket import *
 
@@ -14,10 +15,14 @@ class TcpServer:
         self.tcpServerSocket = socket(AF_INET, SOCK_STREAM)
 
     def start(self):
-        self.tcpServerSocket.bind(self.Addr)
-        print('Start Tcp Server')
-        print('Listen Tcp:{}'.format(self.Addr))
-        self.tcpServerSocket.listen(5)
+        try:
+            print('Start Tcp Server')
+            print('Listen Tcp:{}'.format(self.Addr))
+            self.tcpServerSocket.bind(self.Addr)
+            self.tcpServerSocket.listen(5)
+        except Exception as e:
+            print('Error listen Tcp:', e)
+            os._exit(1)
         while True:
             print('Loop waiting for connect...')
             tcpClientSocket, tcpClientAddr = self.tcpServerSocket.accept()
