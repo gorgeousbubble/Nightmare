@@ -1,3 +1,4 @@
+import argparse
 import concurrent.futures as futures
 import os
 import time
@@ -56,5 +57,11 @@ class TcpServer:
 
 
 if __name__ == '__main__':
-    s = TcpServer()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
+    parser.add_argument(
+        '-p', '--port', help='port: port number witch tcp server listen, such as \'6000\'', type=int, default=6000)
+    args = parser.parse_args()
+    s = TcpServer(host=args.ip, port=args.port)
     s.start()
