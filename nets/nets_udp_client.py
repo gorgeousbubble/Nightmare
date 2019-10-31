@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import argparse
 import os
 import time
 from socket import *
@@ -36,5 +39,11 @@ class UdpClient:
 
 
 if __name__ == '__main__':
-    c = UdpClient()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
+    parser.add_argument(
+        '-p', '--port', help='port: port number witch tcp server listen, such as \'6001\'', type=int, default=6001)
+    args = parser.parse_args()
+    c = UdpClient(host=args.ip, port=args.port)
     c.start()

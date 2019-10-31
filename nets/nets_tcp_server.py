@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import argparse
 import concurrent.futures as futures
 import os
@@ -25,11 +27,14 @@ class TcpServer:
             print('Error listen Tcp:', e)
             os._exit(1)
         while True:
-            print('Loop waiting for connect...')
-            tcpClientSocket, tcpClientAddr = self.tcpServerSocket.accept()
-            self.Executor.submit(self.recv, tcpClientSocket, tcpClientAddr)
-            print('Success accept client:{}'.format(tcpClientAddr))
-            self.Clients.append((tcpClientSocket, tcpClientAddr))
+            try:
+                print('Loop waiting for connect...')
+                tcpClientSocket, tcpClientAddr = self.tcpServerSocket.accept()
+                self.Executor.submit(self.recv, tcpClientSocket, tcpClientAddr)
+                print('Success accept client:{}'.format(tcpClientAddr))
+                self.Clients.append((tcpClientSocket, tcpClientAddr))
+            except:
+                break
 
     def recv(self, tcpClientSocket, tcpClientAddr):
         try:
