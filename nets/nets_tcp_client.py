@@ -18,6 +18,7 @@ class TcpClient:
     def start(self):
         try:
             print('Start Tcp Client')
+            print('Connect to Tcp Server:{}'.format(self.Addr))
             self.tcpClientSocket.connect(self.Addr)
             pass
         except Exception as e:
@@ -57,9 +58,12 @@ if __name__ == '__main__':
     futures.ThreadPoolExecutor(max_workers=1).submit(c.recv)
 
     while True:
-        data = input()
-        if not data:
-            print('Remote host forcibly closed connect:{}'.format(c.Addr))
+        try:
+            data = input()
+            if not data:
+                c.tcpClientSocket.close()
+                break
+            c.send(data)
+        except:
             c.tcpClientSocket.close()
             break
-        c.send(data)
