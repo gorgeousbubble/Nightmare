@@ -31,7 +31,7 @@ class UdpClient:
                     break
                 print('[{}:{}] {}'.format(addr[0], str(addr[1]), time.strftime(
                     '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
-                print('Local->Remote:{}'.format(data))
+                print('Local->Remote:{}'.format(data.decode('utf-8')))
         except Exception as e:
             print('Error send messages:', e)
         finally:
