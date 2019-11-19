@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from http.server import HTTPServer, BaseHTTPRequestHandler
+import argparse
 import json
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 class HttpServer(HTTPServer):
@@ -12,6 +13,7 @@ class HttpServer(HTTPServer):
         self.httpServerSocket = HTTPServer(self.Addr, HttpResquestHandler)
 
     def start(self):
+        print('Start Listen And Server on {}'.format(self.Addr))
         self.httpServerSocket.serve_forever()
 
 
@@ -25,6 +27,11 @@ class HttpResquestHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    s = HttpServer()
-    print('Start Listen And Server on {}'.format(s.Addr))
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-i', '--ip', help='ip address: ipv4 address witch http server listen, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
+    parser.add_argument(
+        '-p', '--port', help='port: port number witch http server listen, such as \'8080\'', type=int, default=8080)
+    args = parser.parse_args()
+    s = HttpServer(host=args.ip, port=args.port)
     s.start()
