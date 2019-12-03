@@ -4,6 +4,7 @@ import argparse
 import sys
 import os
 from cmd import parse_cmd_tcp
+from cmd import parse_cmd_udp
 
 
 if __name__ == '__main__':
@@ -12,6 +13,7 @@ if __name__ == '__main__':
     sub_parser = cmd_parser.add_subparsers()
     cmd_map = {}
     cmd_map['tcp'] = {'sub_parser': sub_parser.add_parser('tcp'), 'func': parse_cmd_tcp}
+    cmd_map['udp'] = {'sub_parser': sub_parser.add_parser('udp'), 'func': parse_cmd_udp}
     # check command args number
     if len(sys.argv) < 2:
         # append '--help' display usage
