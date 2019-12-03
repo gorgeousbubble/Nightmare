@@ -3,8 +3,8 @@
 import argparse
 import sys
 import os
-from cmd import parse_cmd_tcp
-from cmd import parse_cmd_udp
+from cmds import parse_cmd_tcp
+from cmds import parse_cmd_udp
 
 
 if __name__ == '__main__':
