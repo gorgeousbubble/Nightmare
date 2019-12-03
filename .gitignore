@@ -29,6 +29,9 @@ bld/
 [Oo]bj/
 [Ll]og/
 
+# Running results
+__pycache__
+
 # Log files
 log
 
