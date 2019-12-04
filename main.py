@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # command parser
     cmd_parser = argparse.ArgumentParser(prog='Nightmare')
     sub_parser = cmd_parser.add_subparsers()
-    cmd_map = {}
+    cmd_map = dict()
     cmd_map['tcp'] = {'sub_parser': sub_parser.add_parser('tcp'), 'func': parse_cmd_tcp}
     cmd_map['udp'] = {'sub_parser': sub_parser.add_parser('udp'), 'func': parse_cmd_udp}
     # check command args number
