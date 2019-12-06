@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
-import os
 import time
 from socket import *
 
@@ -12,31 +11,31 @@ class UdpServer:
         self.Port = port
         self.BufSize = 4096
         self.Addr = (self.Host, self.Port)
-        self.udpServerSocket = socket(AF_INET, SOCK_DGRAM)
+        self.Socket = socket(AF_INET, SOCK_DGRAM)
 
     def start(self):
         try:
             print('Start Udp Server')
             print('Bind Udp:{}'.format(self.Addr))
-            self.udpServerSocket.bind(self.Addr)
+            self.Socket.bind(self.Addr)
         except Exception as e:
             print('Error bind Udp:', e)
-            os._exit(1)
+            exit(1)
         try:
             print('Loop waiting for messages...')
             while True:
-                data, addr = self.udpServerSocket.recvfrom(self.BufSize)
+                data, addr = self.Socket.recvfrom(self.BufSize)
                 print('[{}:{}] {}'.format(addr[0], addr[1], time.strftime(
                     '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                 print('Remote->Local:{}'.format(data.decode('utf-8')))
 
                 info = '{}'.format(data.decode('utf-8'))
-                self.udpServerSocket.sendto(info.encode('utf-8'), addr)
+                self.Socket.sendto(info.encode('utf-8'), addr)
                 print('[{}:{}] {}'.format(self.Addr[0], self.Addr[1], time.strftime(
                     '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                 print('Local->Remote:{}'.format(info))
         finally:
-            self.udpServerSocket.close()
+            self.Socket.close()
 
 
 if __name__ == '__main__':
