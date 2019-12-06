@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
-import os
 import time
 from socket import *
 
@@ -12,7 +11,7 @@ class UdpClient:
         self.Port = port
         self.BufSize = 4096
         self.Addr = (self.Host, self.Port)
-        self.udpClientSocket = socket(AF_INET, SOCK_DGRAM)
+        self.Socket = socket(AF_INET, SOCK_DGRAM)
 
     def start(self):
         try:
@@ -22,11 +21,11 @@ class UdpClient:
                 if not data:
                     break
 
-                self.udpClientSocket.sendto(data.encode('utf-8'), self.Addr)
+                self.Socket.sendto(data.encode('utf-8'), self.Addr)
                 print('[{}:{}] {}'.format(self.Addr[0], self.Addr[1], time.strftime(
                     '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                 print('Local->Remote:{}'.format(data))
-                data, addr = self.udpClientSocket.recvfrom(self.BufSize)
+                data, addr = self.Socket.recvfrom(self.BufSize)
                 if not data:
                     break
                 print('[{}:{}] {}'.format(addr[0], str(addr[1]), time.strftime(
@@ -35,7 +34,7 @@ class UdpClient:
         except Exception as e:
             print('Error send messages:', e)
         finally:
-            self.udpClientSocket.close()
+            self.Socket.close()
 
 
 if __name__ == '__main__':

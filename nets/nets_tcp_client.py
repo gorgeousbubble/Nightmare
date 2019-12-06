@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import argparse
 import concurrent.futures as futures
-import os
 import time
 from socket import *
 
@@ -13,29 +12,29 @@ class TcpClient:
         self.Port = port
         self.BufSize = 4096
         self.Addr = (self.Host, self.Port)
-        self.tcpClientSocket = socket(AF_INET, SOCK_STREAM)
+        self.Socket = socket(AF_INET, SOCK_STREAM)
 
     def start(self):
         try:
             print('Start Tcp Client')
             print('Connect to Tcp Server:{}'.format(self.Addr))
-            self.tcpClientSocket.connect(self.Addr)
+            self.Socket.connect(self.Addr)
             pass
         except Exception as e:
             print('Error connect to server:', e)
-            os._exit(1)
+            exit(1)
 
     def send(self, data):
-        Addr = self.tcpClientSocket.getsockname()
-        print('[{}:{}] {}'.format(Addr[0], str(Addr[1]), time.strftime(
+        addr = self.Socket.getsockname()
+        print('[{}:{}] {}'.format(addr[0], str(addr[1]), time.strftime(
             '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
         print('Local->Remote:{}'.format(data))
-        self.tcpClientSocket.send(data.encode('utf-8'))
+        self.Socket.send(data.encode('utf-8'))
 
     def recv(self):
         try:
             while True:
-                data = self.tcpClientSocket.recv(self.BufSize)
+                data = self.Socket.recv(self.BufSize)
                 if not data:
                     break
                 print('[{}:{}] {}'.format(self.Addr[0], str(self.Addr[1]), time.strftime(
@@ -43,7 +42,7 @@ class TcpClient:
                 print('Remote->Local:{}'.format(data.decode('utf-8')))
         finally:
             print('Remote host forcibly closed connect:{}'.format(self.Addr))
-            self.tcpClientSocket.close()
+            self.Socket.close()
 
 
 if __name__ == '__main__':
@@ -61,9 +60,10 @@ if __name__ == '__main__':
         try:
             data = input()
             if not data:
-                c.tcpClientSocket.close()
+                c.Socket.close()
                 break
             c.send(data)
-        except:
-            c.tcpClientSocket.close()
+        except Exception as e:
+            c.Socket.close()
+            print('Except break:', e)
             break
