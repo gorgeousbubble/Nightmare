@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import argparse
 import concurrent.futures as futures
-import os
 import time
 from socket import *
 
@@ -15,50 +14,49 @@ class TcpServer:
         self.Addr = (self.Host, self.Port)
         self.Clients = []
         self.Executor = futures.ThreadPoolExecutor(max_workers=3)
-        self.tcpServerSocket = socket(AF_INET, SOCK_STREAM)
+        self.Socket = socket(AF_INET, SOCK_STREAM)
 
     def start(self):
         try:
             print('Start Tcp Server')
             print('Listen Tcp:{}'.format(self.Addr))
-            self.tcpServerSocket.bind(self.Addr)
-            self.tcpServerSocket.listen(5)
+            self.Socket.bind(self.Addr)
+            self.Socket.listen(5)
         except Exception as e:
             print('Error listen Tcp:', e)
             exit(1)
         while True:
             try:
                 print('Loop waiting for connect...')
-                tcpClientSocket, tcpClientAddr = self.tcpServerSocket.accept()
-                self.Executor.submit(self.recv, tcpClientSocket, tcpClientAddr)
-                print('Success accept client:{}'.format(tcpClientAddr))
-                self.Clients.append((tcpClientSocket, tcpClientAddr))
-            except:
+                sock, addr = self.Socket.accept()
+                self.Executor.submit(self.recv, sock, addr)
+                print('Success accept client:{}'.format(addr))
+                self.Clients.append((sock, addr))
+            except Exception as e:
+                print('Except break:', e)
                 break
 
-    def recv(self, tcpClientSocket, tcpClientAddr):
+    def recv(self, sock, addr):
         try:
             while True:
-                data = tcpClientSocket.recv(self.BufSize)
+                data = sock.recv(self.BufSize)
                 if data:
-                    print('[{}:{}] {}'.format(tcpClientAddr[0], tcpClientAddr[1], time.strftime(
+                    print('[{}:{}] {}'.format(addr[0], addr[1], time.strftime(
                         '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                     print('Remote->Local:{}'.format(data.decode('utf-8')))
                     for v in self.Clients:
-                        sock = v[0]
-                        addr = v[1]
-                        if sock == tcpClientSocket:
+                        if v[0] == sock:
                             print('[{}:{}] {}'.format(self.Addr[0], str(self.Addr[1]), time.strftime(
                                 '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                             print('Local->Remote:{}'.format(data.decode('utf-8')))
                             info = '{}'.format(data.decode('utf-8'))
-                            sock.send(info.encode('utf-8'))
+                            v[0].send(info.encode('utf-8'))
                 else:
                     break
         finally:
-            print('Remote host forcibly closed connect:{}'.format(tcpClientAddr))
-            self.Clients.remove((tcpClientSocket, tcpClientAddr))
-            tcpClientSocket.close()
+            print('Remote host forcibly closed connect:{}'.format(addr))
+            self.Clients.remove((sock, addr))
+            sock.close()
 
 
 if __name__ == '__main__':
