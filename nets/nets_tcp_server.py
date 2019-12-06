@@ -25,7 +25,7 @@ class TcpServer:
             self.tcpServerSocket.listen(5)
         except Exception as e:
             print('Error listen Tcp:', e)
-            os._exit(1)
+            exit(1)
         while True:
             try:
                 print('Loop waiting for connect...')
