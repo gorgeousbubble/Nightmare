@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 import time
+import threading
 from socket import *
 
 
@@ -16,6 +17,9 @@ class UdpClient(object):
     def start(self):
         try:
             print('Start Udp Client')
+            t = threading.Thread(target=self.recv)
+            t.setDaemon(True)
+            t.start()
             while True:
                 data = input()
                 if not data:
@@ -25,12 +29,6 @@ class UdpClient(object):
                 print('[{}:{}] {}'.format(self.Addr[0], self.Addr[1], time.strftime(
                     '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                 print('Local->Remote:{}'.format(data))
-                data, addr = self.Socket.recvfrom(self.BufSize)
-                if not data:
-                    break
-                print('[{}:{}] {}'.format(addr[0], str(addr[1]), time.strftime(
-                    '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
-                print('Local->Remote:{}'.format(data.decode('utf-8')))
         except Exception as e:
             print('Error send messages:', e)
         finally:
@@ -39,6 +37,16 @@ class UdpClient(object):
     def stop(self):
         self.Socket.close()
         print('Stop Udp Client')
+
+    def recv(self):
+        self.Socket.sendto('hello'.encode('utf-8'), self.Addr)
+        while True:
+            data, addr = self.Socket.recvfrom(self.BufSize)
+            if not data:
+                break
+            print('[{}:{}] {}'.format(addr[0], str(addr[1]), time.strftime(
+                '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
+            print('Remote->Client:{}'.format(data.decode('utf-8')))
 
 
 def start_udp_client(host, port):
