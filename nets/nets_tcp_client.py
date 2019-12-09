@@ -50,14 +50,8 @@ class TcpClient(object):
             self.Socket.close()
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-i', '--ip', help='ip address: ipv4 address witch tcp client connect, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
-    parser.add_argument(
-        '-p', '--port', help='port: port number witch tcp client connect, such as \'6000\'', type=int, default=6000)
-    args = parser.parse_args()
-    c = TcpClient(host=args.ip, port=args.port)
+def start_tcp_client(host, port):
+    c = TcpClient(host=host, port=port)
     c.start()
     futures.ThreadPoolExecutor(max_workers=1).submit(c.recv)
 
@@ -72,3 +66,13 @@ if __name__ == '__main__':
             c.Socket.close()
             print('Except break:', e)
             break
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-i', '--ip', help='ip address: ipv4 address witch tcp client connect, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
+    parser.add_argument(
+        '-p', '--port', help='port: port number witch tcp client connect, such as \'6000\'', type=int, default=6000)
+    args = parser.parse_args()
+    start_tcp_client(host=args.ip, port=args.port)

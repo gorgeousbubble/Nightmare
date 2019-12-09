@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
-from nets import UdpServer
-from nets import UdpClient
+from nets import start_udp_server
+from nets import start_udp_client
 
 
 def parse_cmd_udp(cmd_parser, sub_parser):
@@ -14,10 +14,8 @@ def parse_cmd_udp(cmd_parser, sub_parser):
     print(args)
     # choose udp mode
     if args.mode == 'server' or args.mode == 's':
-        s = UdpServer(host=args.ip, port=args.port)
-        s.start()
+        start_udp_server(host=args.ip, port=args.port)
     elif args.mode == 'client' or args.mode == 'c':
-        c = UdpClient(host=args.ip, port=args.port)
-        c.start()
+        start_udp_client(host=args.ip, port=args.port)
     else:
         print('Invalid Udp Mode. You can input \'c\' stand for \'client\' or \'s\' for \'server\'.')

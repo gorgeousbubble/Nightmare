@@ -36,6 +36,15 @@ class UdpClient(object):
         finally:
             self.Socket.close()
 
+    def stop(self):
+        self.Socket.close()
+        print('Stop Udp Client')
+
+
+def start_udp_client(host, port):
+    c = UdpClient(host=host, port=port)
+    c.start()
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -44,5 +53,4 @@ if __name__ == '__main__':
     parser.add_argument(
         '-p', '--port', help='port: port number witch tcp server listen, such as \'6001\'', type=int, default=6001)
     args = parser.parse_args()
-    c = UdpClient(host=args.ip, port=args.port)
-    c.start()
+    start_udp_client(host=args.ip, port=args.port)

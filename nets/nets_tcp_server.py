@@ -70,6 +70,11 @@ class TcpServer(object):
             sock.close()
 
 
+def start_tcp_server(host, port):
+    s = TcpServer(host=host, port=port)
+    s.start()
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -77,5 +82,4 @@ if __name__ == '__main__':
     parser.add_argument(
         '-p', '--port', help='port: port number witch tcp server listen, such as \'6000\'', type=int, default=6000)
     args = parser.parse_args()
-    s = TcpServer(host=args.ip, port=args.port)
-    s.start()
+    start_tcp_server(host=args.ip, port=args.port)

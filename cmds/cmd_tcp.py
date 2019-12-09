@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import argparse
-import concurrent.futures as futures
-from nets import TcpServer
-from nets import TcpClient
+from nets import start_tcp_server
+from nets import start_tcp_client
 
 
 def parse_cmd_tcp(cmd_parser, sub_parser):
@@ -15,21 +13,8 @@ def parse_cmd_tcp(cmd_parser, sub_parser):
     print(args)
     # choose tcp mode
     if args.mode == 'server' or args.mode == 's':
-        s = TcpServer(host=args.ip, port=args.port)
-        s.start()
+        start_tcp_server(host=args.ip, port=args.port)
     elif args.mode == 'client' or args.mode == 'c':
-        c = TcpClient(host=args.ip, port=args.port)
-        c.start()
-        futures.ThreadPoolExecutor(max_workers=1).submit(c.recv)
-        while True:
-            try:
-                data = input()
-                if not data:
-                    c.tcpClientSocket.close()
-                    break
-                c.send(data)
-            except:
-                c.tcpClientSocket.close()
-                break
+        start_tcp_client(host=args.ip, port=args.port)
     else:
         print('Invalid Tcp Mode. You can input \'c\' stand for \'client\' or \'s\' for \'server\'.')
