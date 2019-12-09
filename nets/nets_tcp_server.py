@@ -36,7 +36,16 @@ class TcpServer(object):
                 self.Clients.append((sock, addr))
             except Exception as e:
                 print('Except break:', e)
+                self.stop()
                 break
+
+    def stop(self):
+        for v in self.Clients:
+            sock = v[0]
+            sock.close()
+        self.Clients.clear()
+        self.Socket.close()
+        print("Stop Tcp Server")
 
     def recv(self, sock, addr):
         try:
@@ -64,7 +73,7 @@ class TcpServer(object):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
+        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='')
     parser.add_argument(
         '-p', '--port', help='port: port number witch tcp server listen, such as \'6000\'', type=int, default=6000)
     args = parser.parse_args()
