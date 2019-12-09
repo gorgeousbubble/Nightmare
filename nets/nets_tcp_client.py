@@ -22,7 +22,12 @@ class TcpClient(object):
             pass
         except Exception as e:
             print('Error connect to server:', e)
+            self.stop()
             exit(1)
+
+    def stop(self):
+        self.Socket.close()
+        print('Stop Tcp Client')
 
     def send(self, data):
         addr = self.Socket.getsockname()

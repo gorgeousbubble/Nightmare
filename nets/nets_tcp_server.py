@@ -73,7 +73,7 @@ class TcpServer(object):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='')
+        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='0.0.0.0')
     parser.add_argument(
         '-p', '--port', help='port: port number witch tcp server listen, such as \'6000\'', type=int, default=6000)
     args = parser.parse_args()
