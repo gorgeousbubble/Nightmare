@@ -5,7 +5,7 @@ import time
 from socket import *
 
 
-class UdpServer:
+class UdpServer(object):
     def __init__(self, host='', port=6001):
         self.Host = host
         self.Port = port
@@ -37,13 +37,21 @@ class UdpServer:
         finally:
             self.Socket.close()
 
+    def stop(self):
+        self.Socket.close()
+        print('Stop Udp Server')
+
+
+def start_udp_server(host, port):
+    s = UdpServer(host=host, port=port)
+    s.start()
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
+        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='0.0.0.0')
     parser.add_argument(
         '-p', '--port', help='port: port number witch tcp server listen, such as \'6001\'', type=int, default=6001)
     args = parser.parse_args()
-    s = UdpServer(host=args.ip, port=args.port)
-    s.start()
+    start_udp_server(host=args.ip, port=args.port)

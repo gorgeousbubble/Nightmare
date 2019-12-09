@@ -32,6 +32,9 @@ bld/
 # Running results
 __pycache__
 
+# Generate files
+*.pyc
+
 # Log files
 log
 

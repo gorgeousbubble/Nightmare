@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 import argparse
 import time
+import threading
 from socket import *
 
 
-class UdpClient:
+class UdpClient(object):
     def __init__(self, host='127.0.0.1', port=6001):
         self.Host = host
         self.Port = port
@@ -16,6 +17,9 @@ class UdpClient:
     def start(self):
         try:
             print('Start Udp Client')
+            t = threading.Thread(target=self.recv)
+            t.setDaemon(True)
+            t.start()
             while True:
                 data = input()
                 if not data:
@@ -25,16 +29,29 @@ class UdpClient:
                 print('[{}:{}] {}'.format(self.Addr[0], self.Addr[1], time.strftime(
                     '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                 print('Local->Remote:{}'.format(data))
-                data, addr = self.Socket.recvfrom(self.BufSize)
-                if not data:
-                    break
-                print('[{}:{}] {}'.format(addr[0], str(addr[1]), time.strftime(
-                    '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
-                print('Local->Remote:{}'.format(data.decode('utf-8')))
         except Exception as e:
             print('Error send messages:', e)
         finally:
             self.Socket.close()
+
+    def stop(self):
+        self.Socket.close()
+        print('Stop Udp Client')
+
+    def recv(self):
+        self.Socket.sendto('hello'.encode('utf-8'), self.Addr)
+        while True:
+            data, addr = self.Socket.recvfrom(self.BufSize)
+            if not data:
+                break
+            print('[{}:{}] {}'.format(addr[0], str(addr[1]), time.strftime(
+                '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
+            print('Remote->Client:{}'.format(data.decode('utf-8')))
+
+
+def start_udp_client(host, port):
+    c = UdpClient(host=host, port=port)
+    c.start()
 
 
 if __name__ == '__main__':
@@ -44,5 +61,4 @@ if __name__ == '__main__':
     parser.add_argument(
         '-p', '--port', help='port: port number witch tcp server listen, such as \'6001\'', type=int, default=6001)
     args = parser.parse_args()
-    c = UdpClient(host=args.ip, port=args.port)
-    c.start()
+    start_udp_client(host=args.ip, port=args.port)

@@ -10,3 +10,4 @@ class TestTcpServer(unittest.TestCase):
         self.assertEqual(s.Host, '127.0.0.1')
         self.assertEqual(s.Port, 6000)
         self.assertEqual(s.Addr, ('127.0.0.1', 6000))
+        s.stop()

@@ -6,14 +6,16 @@ import time
 from socket import *
 
 
-class TcpServer:
-    def __init__(self, host='', port=6000):
+class TcpServer(object):
+    def __init__(self, host='', port=6000, backlog=5, workers=5):
         self.Host = host
         self.Port = port
+        self.Backlog = backlog
         self.BufSize = 4096
         self.Addr = (self.Host, self.Port)
         self.Clients = []
-        self.Executor = futures.ThreadPoolExecutor(max_workers=3)
+        self.Workers = workers
+        self.Executor = futures.ThreadPoolExecutor(max_workers=self.Workers)
         self.Socket = socket(AF_INET, SOCK_STREAM)
 
     def start(self):
@@ -21,7 +23,7 @@ class TcpServer:
             print('Start Tcp Server')
             print('Listen Tcp:{}'.format(self.Addr))
             self.Socket.bind(self.Addr)
-            self.Socket.listen(5)
+            self.Socket.listen(self.Backlog)
         except Exception as e:
             print('Error listen Tcp:', e)
             exit(1)
@@ -34,7 +36,16 @@ class TcpServer:
                 self.Clients.append((sock, addr))
             except Exception as e:
                 print('Except break:', e)
+                self.stop()
                 break
+
+    def stop(self):
+        for v in self.Clients:
+            sock = v[0]
+            sock.close()
+        self.Clients.clear()
+        self.Socket.close()
+        print("Stop Tcp Server")
 
     def recv(self, sock, addr):
         try:
@@ -59,12 +70,16 @@ class TcpServer:
             sock.close()
 
 
+def start_tcp_server(host, port):
+    s = TcpServer(host=host, port=port)
+    s.start()
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='127.0.0.1')
+        '-i', '--ip', help='ip address: ipv4 address witch tcp server listen, such as \'127.0.0.1\'', type=str, default='0.0.0.0')
     parser.add_argument(
         '-p', '--port', help='port: port number witch tcp server listen, such as \'6000\'', type=int, default=6000)
     args = parser.parse_args()
-    s = TcpServer(host=args.ip, port=args.port)
-    s.start()
+    start_tcp_server(host=args.ip, port=args.port)
