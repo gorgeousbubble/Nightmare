@@ -6,7 +6,7 @@ import time
 from socket import *
 
 
-class TcpClient:
+class TcpClient(object):
     def __init__(self, host='127.0.0.1', port=6000):
         self.Host = host
         self.Port = port

@@ -5,7 +5,7 @@ import time
 from socket import *
 
 
-class UdpClient:
+class UdpClient(object):
     def __init__(self, host='127.0.0.1', port=6001):
         self.Host = host
         self.Port = port
