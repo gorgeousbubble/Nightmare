@@ -7,13 +7,15 @@ from socket import *
 
 
 class TcpServer(object):
-    def __init__(self, host='', port=6000):
+    def __init__(self, host='', port=6000, backlog=5, workers=5):
         self.Host = host
         self.Port = port
+        self.Backlog = backlog
         self.BufSize = 4096
         self.Addr = (self.Host, self.Port)
         self.Clients = []
-        self.Executor = futures.ThreadPoolExecutor(max_workers=3)
+        self.Workers = workers
+        self.Executor = futures.ThreadPoolExecutor(max_workers=self.Workers)
         self.Socket = socket(AF_INET, SOCK_STREAM)
 
     def start(self):
@@ -21,7 +23,7 @@ class TcpServer(object):
             print('Start Tcp Server')
             print('Listen Tcp:{}'.format(self.Addr))
             self.Socket.bind(self.Addr)
-            self.Socket.listen(5)
+            self.Socket.listen(self.Backlog)
         except Exception as e:
             print('Error listen Tcp:', e)
             exit(1)
