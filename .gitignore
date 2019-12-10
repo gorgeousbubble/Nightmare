@@ -34,6 +34,8 @@ __pycache__
 
 # Generate files
 *.pyc
+*.pyd
+*.pyo
 *.spec
 build/
 dist/
