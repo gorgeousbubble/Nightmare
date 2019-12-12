@@ -52,6 +52,11 @@ if exist %dirName%.exe ( del %dirName%.exe ) > nul
     echo.
     echo.
 
+    :: Build Result
+    if exist dist/%dirName%.exe (( choice /t 1 /d y /n >nul ) | ( echo build success. )) else ( echo build failure! | pause )
+    echo.
+    echo.
+
     :: Build Pause & Exit
     pause
     exit
@@ -61,6 +66,17 @@ if exist %dirName%.exe ( del %dirName%.exe ) > nul
     echo [Build Release]
     echo pyinstaller -n Nightmare -F main.py
     pyinstaller -n Nightmare -F main.py
+    echo.
+    echo.
+
+    :: UPX Shell Pack
+    echo upx -9 dist/%dirName%.exe
+    %absPath%tools\upx -9 dist/%dirName%.exe
+    echo.
+    echo.
+
+    :: Build Result
+    if exist dist/%dirName%.exe (( choice /t 1 /d y /n >nul ) | ( echo build success. )) else ( echo build failure! | pause )
     echo.
     echo.
 
