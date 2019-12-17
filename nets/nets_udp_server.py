@@ -17,6 +17,7 @@ class UdpServer(object):
         try:
             print('Start Udp Server')
             print('Bind Udp:{}'.format(self.Addr))
+            print('(Press Ctrl + Break to exit abort...)')
             self.Socket.bind(self.Addr)
         except Exception as e:
             print('Error bind Udp:', e)
