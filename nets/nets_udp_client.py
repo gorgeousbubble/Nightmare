@@ -17,6 +17,7 @@ class UdpClient(object):
     def start(self):
         try:
             print('Start Udp Client')
+            print('(Press Ctrl + Break to exit abort...)')
             t = threading.Thread(target=self.recv)
             t.setDaemon(True)
             t.start()

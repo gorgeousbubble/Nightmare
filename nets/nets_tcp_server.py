@@ -22,6 +22,7 @@ class TcpServer(object):
         try:
             print('Start Tcp Server')
             print('Listen Tcp:{}'.format(self.Addr))
+            print('(Press Ctrl + Break to exit abort...)')
             self.Socket.bind(self.Addr)
             self.Socket.listen(self.Backlog)
         except Exception as e:

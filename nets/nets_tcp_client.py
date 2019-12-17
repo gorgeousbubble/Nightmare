@@ -18,6 +18,7 @@ class TcpClient(object):
         try:
             print('Start Tcp Client')
             print('Connect to Tcp Server:{}'.format(self.Addr))
+            print('(Press Ctrl + Break to exit abort...)')
             self.Socket.connect(self.Addr)
             pass
         except Exception as e:
