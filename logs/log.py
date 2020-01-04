@@ -7,63 +7,65 @@ from logging.handlers import RotatingFileHandler
 
 
 class Log(object):
-    def __init__(self, target='console'):
-        self.Target = target
-        self.Level = logging.DEBUG
-        self.Format = '%(asctime)s -%(levelname)s- [%(threadName)s:%(thread)d] (%(name)s:%(lineno)s) %(message)s'
-        self.Logger = self.get_logger('__main__')
+    def __init__(self, target='console', level=logging.DEBUG, path='./log', app='Nightmare'):
+        self.target = target
+        self.level = level
+        self.path = path
+        self.app = app
+        self.format = '%(asctime)s -%(levelname)s- [%(threadName)s:%(thread)d] (%(name)s:%(lineno)s) %(message)s'
+        self.logger = self.get_logger('__main__')
         # logs type console
-        if self.Target == 'console':
-            logging.basicConfig(level=self.Level, format=self.Format,
+        if self.target == 'console':
+            logging.basicConfig(level=self.level, format=self.format,
                                 datefmt='%Y-%m-%d %H:%M:%S')
         # logs type file
-        elif self.Target == 'file':
-            if not os.path.exists('./log'):
-                os.mkdir('./log')
+        elif self.target == 'file':
+            if not os.path.exists(path):
+                os.mkdir(path)
             now = datetime.datetime.now().strftime('%Y-%m-%d')
-            name = './log/Nightmare_{}.log'.format(now)
+            name = os.path.join(path, '{}_{}.log'.format(app, now))
             handler = logging.FileHandler(filename=name, encoding='utf-8', mode='a')
-            logging.basicConfig(level=self.Level, format=self.Format,
+            logging.basicConfig(level=self.level, format=self.format,
                                 datefmt='%Y-%m-%d %H:%M:%S', handlers=[handler])
         # logs type rotating files
-        elif self.Target == 'rotating':
-            if not os.path.exists('./log'):
-                os.mkdir('./log')
-            name = './log/Nightmare.log'
+        elif self.target == 'rotating':
+            if not os.path.exists(path):
+                os.mkdir(path)
+            name = os.path.join(path, '{}.log'.format(app))
             handler = RotatingFileHandler(filename=name, maxBytes=4*1024*1024, backupCount=5)
-            logging.basicConfig(level=self.Level, format=self.Format,
+            logging.basicConfig(level=self.level, format=self.format,
                                 datefmt='%Y-%m-%d %H:%M:%S', handlers=[handler])
         # invalid logs type
         else:
             print('invalid logs type')
 
     def add_handler_stream(self):
-        logger = self.Logger
+        logger = self.logger
         handler = logging.StreamHandler()
-        handler.setLevel(self.Level)
+        handler.setLevel(self.level)
         logger.addHandler(handler)
 
     def add_handler_file(self):
-        if not os.path.exists('./log'):
-            os.mkdir('./log')
+        if not os.path.exists(self.path):
+            os.mkdir(self.path)
         now = datetime.datetime.now().strftime('%Y-%m-%d')
-        name = './log/Nightmare_{}.log'.format(now)
-        logger = self.Logger
+        name = os.path.join(self.path, '{}_{}.log'.format(self.app, now))
+        logger = self.logger
         handler = logging.FileHandler(filename=name, encoding='utf-8', mode='a')
-        handler.setLevel(self.Level)
+        handler.setLevel(self.level)
         logger.addHandler(handler)
 
     def add_handler_rotating(self):
-        if not os.path.exists('./log'):
-            os.mkdir('./log')
-        name = './log/Nightmare.log'
-        logger = self.Logger
+        if not os.path.exists(self.path):
+            os.mkdir(self.path)
+        name = os.path.join(self.path, '{}.log'.format(self.app))
+        logger = self.logger
         handler = RotatingFileHandler(filename=name, maxBytes=4 * 1024 * 1024, backupCount=5)
-        handler.setLevel(self.Level)
+        handler.setLevel(self.level)
         logger.addHandler(handler)
 
     def get_logger_master(self):
-        return self.Logger
+        return self.logger
 
     @staticmethod
     def get_logger(name):
@@ -72,7 +74,7 @@ class Log(object):
 
 
 if __name__ == '__main__':
-    log = Log(target='rotating').get_logger(__name__)
+    log = Log(target='rotating', path='../log').get_logger(__name__)
     log.debug('hello,world~')
     log.info('python logs package.')
     log.warning('do not touch it!')

@@ -12,7 +12,7 @@ def index():
 
 
 @app.route('/nightmare', methods=['GET'])
-def home():
+def base():
     return 'Nightmare Project'
 
 
