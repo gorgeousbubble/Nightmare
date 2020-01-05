@@ -31,7 +31,7 @@ if __name__ == '__main__':
     db.exec(r"insert into user values ('A-001', 'Adam', 95)")
     db.exec(r"insert into user values ('A-002', 'Bart', 62)")
     db.exec(r"insert into user values ('A-003', 'Lisa', 78)")
-    res = db.exec('select * from user where id=?', ('A-001', ))
-    for v in res:
+    values = db.exec('select * from user where id=?', ('A-001', )).fetchall()
+    for v in values:
         print(v)
     db.close()
