@@ -4,7 +4,7 @@ import argparse
 import http.client
 
 
-class HttpClient:
+class HttpClient(object):
     def __init__(self, host='localhost', port=8080):
         self.Host = host
         self.Port = port
