@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import mysql.connector
+import pymysql
 
 
 class Mysql(object):
@@ -10,7 +10,7 @@ class Mysql(object):
         self.user = user
         self.password = password
         # connect to database
-        self.conn = mysql.connector.connect(user=self.user, password=self.password, database=self.db)
+        self.conn = pymysql.connect(user=self.user, password=self.password, database=self.db)
         self.cursor = self.conn.cursor()
 
     def exec(self, *args, **kwargs):
