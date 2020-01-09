@@ -3,6 +3,11 @@
 import argparse
 import http.client
 import time
+import logging
+
+
+# logger handle record runtime logs
+log = logging.getLogger(__name__)
 
 
 class HttpClient(object):

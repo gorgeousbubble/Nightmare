@@ -4,3 +4,6 @@
 # constants definitions
 PROJECT_NAME = 'Nightmare'
 APPLICATION_NAME = PROJECT_NAME
+
+LOGS_DIR = './log'
+LOGS_TARGET = 'rotating'
