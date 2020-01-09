@@ -1,15 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
+import logging
 import sys
 import os
+from const import APPLICATION_NAME
+from const import LOGS_DIR
+from const import LOGS_TARGET
 from cmds import parse_cmd_tcp
 from cmds import parse_cmd_udp
+from logs import Log
 
 
+# initialize logger instance
+log = Log(target=LOGS_TARGET, level=logging.DEBUG, path=LOGS_DIR, app=APPLICATION_NAME)
+
+
+# application start
 if __name__ == '__main__':
     # command parser
-    cmd_parser = argparse.ArgumentParser(prog='Nightmare')
+    cmd_parser = argparse.ArgumentParser(prog=APPLICATION_NAME)
     sub_parser = cmd_parser.add_subparsers()
     cmd_map = dict()
     cmd_map['tcp'] = {'sub_parser': sub_parser.add_parser('tcp'), 'func': parse_cmd_tcp}

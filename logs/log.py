@@ -28,7 +28,7 @@ class Log(object):
             logging.basicConfig(level=self.level, format=self.format,
                                 datefmt='%Y-%m-%d %H:%M:%S', handlers=[handler])
         # logs type rotating files
-        elif self.target == 'rotating':
+        elif self.target == 'rotating_file':
             if not os.path.exists(path):
                 os.mkdir(path)
             name = os.path.join(path, '{}.log'.format(app))
@@ -55,7 +55,7 @@ class Log(object):
         handler.setLevel(self.level)
         logger.addHandler(handler)
 
-    def add_handler_rotating(self):
+    def add_handler_rotating_file(self):
         if not os.path.exists(self.path):
             os.mkdir(self.path)
         name = os.path.join(self.path, '{}.log'.format(self.app))
@@ -74,7 +74,7 @@ class Log(object):
 
 
 if __name__ == '__main__':
-    log = Log(target='rotating', path='../log').get_logger(__name__)
+    log = Log(target='rotating_file', path='../log').get_logger(__name__)
     log.debug('hello,world~')
     log.info('python logs package.')
     log.warning('do not touch it!')
