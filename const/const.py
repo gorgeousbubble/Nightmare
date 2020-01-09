@@ -6,4 +6,4 @@ PROJECT_NAME = 'Nightmare'
 APPLICATION_NAME = PROJECT_NAME
 
 LOGS_DIR = './log'
-LOGS_TARGET = 'rotating'
+LOGS_TARGET = 'rotating_file'
