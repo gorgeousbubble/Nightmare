@@ -12,3 +12,7 @@ class TestLog(unittest.TestCase):
     def test_init_file(self):
         log = Log(target='file').get_logger(__name__)
         log.debug('hello,world')
+
+    def test_init_rotating_file(self):
+        log = Log(target='rotating_file').get_logger(__name__)
+        log.debug('hello,world')
