@@ -25,3 +25,7 @@ class TestLog(unittest.TestCase):
         log.warning('do not touch it!')
         log.error('runtime error!!')
         log.critical('out of memory!!!')
+
+    def test_get_logger(self):
+        log = Log(target='console').get_logger('TEST')
+        log.debug('hello,world')
