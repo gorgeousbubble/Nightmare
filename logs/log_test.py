@@ -18,6 +18,12 @@ class TestLog(unittest.TestCase):
         log = Log(target='rotating_file').get_logger(__name__)
         log.debug('hello,world')
 
+    def test_multiple_output(self):
+        ins = Log(target='console')
+        ins.add_handler_file()
+        log = ins.get_logger(__name__)
+        log.debug('hello,world')
+
     def test_level(self):
         log = Log(target='console', level=logging.ERROR).get_logger(__name__)
         log.debug('hello,world~')
