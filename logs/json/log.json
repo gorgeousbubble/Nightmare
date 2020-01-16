@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "simple": {
+      "format": "%(asctime)s -%(levelname)s- [%(threadName)s:%(thread)d] (%(name)s:%(lineno)s) %(message)s",
+      "datefmt": "%Y-%m-%d %H:%M:%S"
+    }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "level": "DEBUG",
+      "formatter": "simple",
+      "stream": "ext://sys.stdout"
+    },
+    "rotating_file": {
+      "class": "logging.handlers.RotatingFileHandler",
+      "level": "DEBUG",
+      "formatter": "simple",
+      "filename": "../../log/Nightmare.log",
+      "maxBytes": "4194304",
+      "backupCount": 5,
+      "encoding": "utf8"
+    },
+    "time_rotating_file": {
+      "class": "logging.handlers.TimedRotatingFileHandler",
+      "level": "INFO",
+      "formatter": "simple",
+      "filename": "../../log/Nightmare.log",
+      "when": "H",
+      "interval": 1,
+      "backupCount": 5,
+      "encoding": "utf8"
+    }
+  },
+  "loggers": {
+    "__main__": {
+      "level": "INFO",
+      "handlers": ["console"],
+      "propagate": "no"
+    }
+  },
+  "root": {
+    "level": "DEBUG",
+    "handlers": ["console"]
+  }
+}
