@@ -7,4 +7,4 @@ Nightmare is a tool for both multiple command and web service develop by Python.
 The project name is Nightmare. It stand for many mysterious things in our mind. This is a mysterious phenomenon that we cannot reasonably explain, so wonderful and fascinating.
 
 ## Installation and usage
-Install Python3 and download package
+Install Python3 and download package from [https://www.python.org](https://www.python.org)
