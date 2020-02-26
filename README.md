@@ -8,3 +8,9 @@ The project name is Nightmare. It stand for many mysterious things in our mind. 
 
 ## Installation and usage
 Install Python3 and download package from [https://www.python.org](https://www.python.org)
+
+  | OS            | Architecture  | Version | Binary                     |
+  | ------------- |:-------------:|:-------:| :------------------------: |
+  | Windows       | amd64         | 3.7.5 ▲ | python3.7.5 windows/amd64  |
+  | Linux         | adm64         | 3.7.5 ▲ | python3.7.5 linux/amd64    |
+  | Linux         | arm           | 3.7.5 ▲ | python3.7.5 linux/arm      |
