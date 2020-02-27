@@ -14,3 +14,5 @@ Install Python3 and download package from [https://www.python.org](https://www.p
   | Windows       | amd64         | 3.7.5 ▲ | python3.7.5 windows/amd64  |
   | Linux         | adm64         | 3.7.5 ▲ | python3.7.5 linux/amd64    |
   | Linux         | arm           | 3.7.5 ▲ | python3.7.5 linux/arm      |
+  
+  #### Use Git to clone this project
