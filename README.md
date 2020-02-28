@@ -15,4 +15,5 @@ Install Python3 and download package from [https://www.python.org](https://www.p
   | Linux         | adm64         | 3.7.5 ▲ | python3.7.5 linux/amd64    |
   | Linux         | arm           | 3.7.5 ▲ | python3.7.5 linux/arm      |
   
-  #### Use Git to clone this project
+#### Use Git to clone this project
+  `git clone https://github.com/gorgeousbubble/nightmare.git`
