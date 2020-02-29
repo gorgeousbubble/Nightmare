@@ -17,3 +17,5 @@ Install Python3 and download package from [https://www.python.org](https://www.p
   
 #### Use Git to clone this project
   `git clone https://github.com/gorgeousbubble/nightmare.git`
+  
+#### Install dependencies
