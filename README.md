@@ -19,3 +19,4 @@ Install Python3 and download package from [https://www.python.org](https://www.p
   `git clone https://github.com/gorgeousbubble/nightmare.git`
   
 #### Install dependencies
+  There are many dependencies we used in this project, we recommend you to install those packages before build the project. You can use pip to install those packages for native deployment. For containerized nightmare, you don't need worry about that, when you build docker image, it will be automatic install and deploy. We will continue update those package which nightmare project rely on, here is the list.
