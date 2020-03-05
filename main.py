@@ -7,6 +7,7 @@ import os
 from const import APPLICATION_NAME
 from const import LOGS_DIR
 from const import LOGS_TARGET
+from cmds import parse_cmd_help
 from cmds import parse_cmd_tcp
 from cmds import parse_cmd_udp
 from logs import Log
@@ -26,6 +27,8 @@ if __name__ == '__main__':
     cmd_map['udp'] = {'sub_parser': sub_parser.add_parser('udp'), 'func': parse_cmd_udp}
     # check command args number
     if len(sys.argv) < 2:
+        # first display project title
+        parse_cmd_help()
         # append '--help' display usage
         sys.argv.append('--help')
         cmd_parser.parse_args()
