@@ -22,4 +22,4 @@ Install Python3 and download package from [https://www.python.org](https://www.p
   There are many dependencies we used in this project, we recommend you to install those packages before build the project. You can use pip to install those packages for native deployment. For containerized nightmare, you don't need worry about that, when you build docker image, it will be automatic install and deploy. We will continue update those package which nightmare project rely on, here is the list.
   
 #### Build native or container
-  You can use `python main.py` to run application. Use `-h` or `--help` option to help you find out the introduction of these function.
+  You can use `python main.py` to run application. Use `-h` or `--help` option to help you find out the introduction of these function. You can also use `build.bat` to build nightmare application in Windows OS.
