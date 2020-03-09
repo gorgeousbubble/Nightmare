@@ -3,3 +3,6 @@
 
 # Python Commands
 PYTHON = python
+
+# Application
+APPNAME = nightmare
