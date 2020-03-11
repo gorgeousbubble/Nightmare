@@ -6,3 +6,4 @@ PYTHON = python
 
 # Application
 APPNAME = nightmare
+APPDIST = nightmare.tar.gz
