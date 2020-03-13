@@ -6,4 +6,5 @@ PYTHON = python
 
 # Application
 APPNAME = nightmare
-APPDIST = $(APPNAME).tar.gz
+APPDIST = nightmare.tar.gz
+APPPATH = ./bin/$(APPNAME)
