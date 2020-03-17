@@ -17,4 +17,4 @@ DOCKERRUN   = $(DOCKER) run
 # Application
 APPNAME = nightmare
 APPDIST = $(APPNAME).tar.gz
-APPPATH = ./bin/$(APPNAME)
+APPPATH = $(PYBIN)/$(APPNAME)
