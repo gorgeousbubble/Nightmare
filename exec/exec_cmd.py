@@ -4,7 +4,7 @@ import subprocess
 import time
 
 
-def exec_cmd(cmd, timeout=5):
+def exec_command(cmd, timeout=5):
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     t_start = time.time()
     while True:
