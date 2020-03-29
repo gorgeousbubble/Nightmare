@@ -31,6 +31,7 @@ clean:
 	rm -rf build
 	rm -rf dist
 	rm -rf log
+	rm -rf *.spec
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -type d | xargs rm -fr
 	@find . -name '.pytest_cache' -type d | xargs rm -fr
