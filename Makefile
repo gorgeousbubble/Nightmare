@@ -28,21 +28,9 @@ build:
 
 .PHONY: clean
 clean:
-	clean-build
-	clean-log
-	clean-pyc
-
-.PHONY: clean-build
-clean-build:
 	rm -rf build
 	rm -rf dist
-
-.PHONY: clean-log
-clean-log:
 	rm -rf log
-
-.PHONY: clean-pyc
-clean-pyc:
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -type d | xargs rm -fr
 	@find . -name '.pytest_cache' -type d | xargs rm -fr
