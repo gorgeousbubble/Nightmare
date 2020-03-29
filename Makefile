@@ -24,7 +24,7 @@ all: build
 
 .PHONY: build
 build:
-    pyinstaller -n $(APPNAME) -F main.py
+	pyinstaller -n $(APPNAME) -F main.py
 
 .PHONY: clean-build
 clean-build:
@@ -38,8 +38,8 @@ clean-log:
 .PHONY: clean-pyc
 clean-pyc:
 	@find . -name '*.pyc' -delete
-    @find . -name '__pycache__' -type d | xargs rm -fr
-    @find . -name '.pytest_cache' -type d | xargs rm -fr
+	@find . -name '__pycache__' -type d | xargs rm -fr
+	@find . -name '.pytest_cache' -type d | xargs rm -fr
 
 .PHONY: clean
 clean:
