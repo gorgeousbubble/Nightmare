@@ -18,3 +18,10 @@ DOCKERRUN   = $(DOCKER) run
 APPNAME = nightmare
 APPDIST = $(APPNAME).tar.gz
 APPPATH = $(PYBIN)/$(APPNAME)
+
+# Build
+all: build
+
+.PHONY: build
+build:
+	pyinstaller -n $(APPNAME) -F main.py
