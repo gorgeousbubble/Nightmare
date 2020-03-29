@@ -2,7 +2,7 @@
 # Copyright(C) 2020, Team Gorgeous Bubble, All Rights Reserved.
 
 # Python Commands
-PYTHON = python
+PYTHON = python3
 
 # Binary Parameters
 PYBASE  = $(shell pwd)
@@ -34,3 +34,11 @@ clean:
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -type d | xargs rm -fr
 	@find . -name '.pytest_cache' -type d | xargs rm -fr
+
+.PHONY: test
+test:
+	$(PYTHON) -m pytest
+
+.PHONY: lint
+lint:
+	$(PYTHON) -m pylint
