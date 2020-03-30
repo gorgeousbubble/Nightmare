@@ -36,6 +36,11 @@ clean:
 	@find . -name '__pycache__' -type d | xargs rm -fr
 	@find . -name '.pytest_cache' -type d | xargs rm -fr
 
+.PHONY: venv
+venv:
+    $(PYTHON) -m venv venv
+    source ./venv/bin/activate
+
 .PHONY: test
 test:
 	$(PYTHON) -m pytest
