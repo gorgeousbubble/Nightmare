@@ -22,6 +22,19 @@ APPPATH = $(PYBIN)/$(APPNAME)
 # Build
 all: build
 
+.PHONY: help
+help:
+    @echo "make build"
+    @echo "       build app as a binary"
+    @echo "make clean"
+    @echo "       clean build cache files"
+    @echo "make venv"
+    @echo "       run venv"
+    @echo "make lint"
+    @echo "       run lint"
+    @echo "make test"
+    @echo "       run tests"
+
 .PHONY: build
 build:
 	pyinstaller -n $(APPNAME) -F main.py
