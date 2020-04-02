@@ -3,10 +3,13 @@
 
 
 class Student(object):
+    count = 0
+
     def __init__(self, name, score, gender='male'):
         self.__name = name
         self.__score = score
         self.__gender = gender
+        Student.count += 1
 
     def get_name(self):
         return self.__name
@@ -40,7 +43,11 @@ class Student(object):
 
 if __name__ == '__main__':
     lisa = Student('Lisa', 99)
+    print('create student lisa.')
+    print('student count:', lisa.count)
     bart = Student('Bart', 59)
+    print('create student bart.')
+    print('student count:', bart.count)
     print(lisa.get_name(), lisa.get_grade())
     print(bart.get_name(), bart.get_grade())
 
