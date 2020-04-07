@@ -28,6 +28,21 @@ def quadratic(a, b, c):
     return x1, x2
 
 
+def power(x, n=2):
+    s = 1
+    while n > 0:
+        s = s * x
+        n -= 1
+    return s
+
+
+def enroll(name, gender, age=6, city='Beijing'):
+    print('name:', name)
+    print('gender:', gender)
+    print('age:', age)
+    print('city:', city)
+
+
 if __name__ == '__main__':
     print('test abs func:')
     print('my_abs(3):', my_abs(3))
@@ -35,3 +50,6 @@ if __name__ == '__main__':
     print('test move func:')
     print('move(0, 0, 2, math.pi/6):', move(0, 0, 2, math.pi/6))
     print('quadratic(1, -5, 6):', quadratic(1, -5, 6))
+    print('power(5):', power(5))
+    print('power(2, 3):', power(2, 3))
+    enroll('Sarah', 'F')
