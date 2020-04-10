@@ -17,3 +17,13 @@ def exec_shell(cmd, timeout=5):
             return None, None, None
         time.sleep(0.1)
     return p.returncode, p.stdout.read(), p.stderr.read()
+
+
+if __name__ == '__main__':
+    exitcode, stdout, stderr = exec_shell('ls -al', timeout=5)
+    if exitcode is None:
+        print('execution timeout')
+    elif exitcode != 0:
+        print('error execute command \'ls -al\':{}'.format(stderr))
+    else:
+        print('success execute command \'ls -al\':{}'.format(stdout))

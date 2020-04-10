@@ -3,7 +3,8 @@
 import os
 import time
 import random
-from multiprocessing import Process
+import subprocess
+from multiprocessing import Process, Queue
 from multiprocessing import Pool
 
 
@@ -29,8 +30,46 @@ def task(name):
 
 
 def start_pool():
-    pass
+    print('parent process %s.' % os.getpid())
+    p = Pool(4)
+    for i in range(4):
+        p.apply_async(task, args=(i,))
+    print('waiting for all subprocesses done...')
+    p.close()
+    p.join()
+    print('all subprocesses done.')
+
+
+def start_sub():
+    print('$ nslookup www.python.org')
+    r = subprocess.call(['nslookup', 'www.python.org'])
+    print('exitcode:{}'.format(r))
+
+
+def write(q):
+    print('process to write: %s' % os.getpid())
+    for v in ['A', 'B', 'C']:
+        print('put %s to queue...' % v)
+        q.put(v)
+        time.sleep(random.random())
+
+
+def read(q):
+    print('process to read: %s' % os.getpid())
+    while True:
+        v = q.get(True)
+        print('get %s from queue...' % v)
+
+
+def start_queue():
+    q = Queue()
+    pw = Process(target=write, args=(q,))
+    pr = Process(target=read, args=(q,))
+    pw.start()
+    pr.start()
+    pw.join()
+    pr.terminate()
 
 
 if __name__ == '__main__':
-    pass
+    start_queue()
