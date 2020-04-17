@@ -3,6 +3,7 @@
 from collections import namedtuple
 from collections import deque
 from collections import defaultdict
+from collections import OrderedDict
 
 
 def test_namedtuple():
@@ -27,7 +28,13 @@ def test_defaultdict():
     print('d[\'key2\']:', d['key2'])
 
 
+def test_ordereddict():
+    d = OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+    print(d)
+
+
 if __name__ == '__main__':
     test_namedtuple()
     test_deque()
     test_defaultdict()
+    test_ordereddict()
