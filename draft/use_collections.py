@@ -4,6 +4,7 @@ from collections import namedtuple
 from collections import deque
 from collections import defaultdict
 from collections import OrderedDict
+from collections import Counter
 
 
 def test_namedtuple():
@@ -33,8 +34,16 @@ def test_ordereddict():
     print(d)
 
 
+def test_counter():
+    c = Counter()
+    for ch in 'programming':
+        c[ch] += 1
+    print(c)
+
+
 if __name__ == '__main__':
     test_namedtuple()
     test_deque()
     test_defaultdict()
     test_ordereddict()
+    test_counter()
