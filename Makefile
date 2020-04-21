@@ -39,6 +39,9 @@ help:
 build:
 	pyinstaller -n $(APPNAME) -F main.py
 
+.PHONY: dist
+dist: build
+
 .PHONY: clean
 clean:
 	rm -rf build
