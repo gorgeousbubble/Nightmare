@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import argparse
 from nets import start_udp_server
 from nets import start_udp_client
 
