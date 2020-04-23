@@ -10,6 +10,7 @@ from const import LOGS_TARGET
 from cmds import parse_cmd_help
 from cmds import parse_cmd_tcp
 from cmds import parse_cmd_udp
+from cmds import parse_cmd_hash
 from logs import Log
 
 
@@ -25,6 +26,7 @@ if __name__ == '__main__':
     cmd_map = dict()
     cmd_map['tcp'] = {'sub_parser': sub_parser.add_parser('tcp'), 'func': parse_cmd_tcp}
     cmd_map['udp'] = {'sub_parser': sub_parser.add_parser('udp'), 'func': parse_cmd_udp}
+    cmd_map['hash'] = {'sub_parser': sub_parser.add_parser('hash'), 'func': parse_cmd_hash}
     # check command args number
     if len(sys.argv) < 2:
         # first display project title
