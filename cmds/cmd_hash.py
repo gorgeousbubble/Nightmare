@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from hash import hash_md5
+from hash import hash_md5, hash_sha1
 
 
 def parse_cmd_hash(cmd_parser, sub_parser):
@@ -20,6 +20,7 @@ def parse_cmd_hash(cmd_parser, sub_parser):
         r = hash_md5(args.input)
         print('calc md5:{}'.format(r))
     elif args.type == 'sha1':
-        pass
+        r = hash_sha1(args.input)
+        print('calc sha1:{}'.format(r))
     else:
         print('Invalid hash algorithm. You can choose one of hash algorithm from support list.')
