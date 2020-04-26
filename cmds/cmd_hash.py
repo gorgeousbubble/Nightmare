@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from hash import hash_md5, hash_sha1, hash_sha256, hash_sha512
+from hash import hash_md5, hash_sha1, hash_sha224, hash_sha256, hash_sha512
 
 
 def parse_cmd_hash(cmd_parser, sub_parser):
@@ -21,6 +21,9 @@ def parse_cmd_hash(cmd_parser, sub_parser):
     elif args.type == 'sha1':
         r = hash_sha1(args.input)
         print('calc sha1:{}'.format(r))
+    elif args.type == 'sha224':
+        r = hash_sha224(args.input)
+        print('calc sha224:{}'.format(r))
     elif args.type == 'sha256':
         r = hash_sha256(args.input)
         print('calc sha256:{}'.format(r))
