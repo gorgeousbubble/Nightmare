@@ -13,7 +13,6 @@ def parse_cmd_tcp(cmd_parser, sub_parser):
     sub_parser.add_argument('-m', '--mode', help='mode: tcp mode choose, \'server\' or \'client\' indicate tcp mode',
                             type=str, default='server')
     args = cmd_parser.parse_args()
-    print(args)
     # choose tcp mode
     if args.mode == 'server' or args.mode == 's':
         start_tcp_server(host=args.ip, port=args.port)

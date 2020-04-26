@@ -13,7 +13,6 @@ def parse_cmd_udp(cmd_parser, sub_parser):
     sub_parser.add_argument('-m', '--mode', help='mode: udp mode choose, \'server\' or \'client\' indicate udp client',
                             type=str, default='server')
     args = cmd_parser.parse_args()
-    print(args)
     # choose udp mode
     if args.mode == 'server' or args.mode == 's':
         start_udp_server(host=args.ip, port=args.port)
