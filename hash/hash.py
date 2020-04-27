@@ -5,6 +5,7 @@ from hash.hash_md5 import hash_md5
 from hash.hash_sha1 import hash_sha1
 from hash.hash_sha224 import hash_sha224
 from hash.hash_sha256 import hash_sha256
+from hash.hash_sha384 import hash_sha384
 from hash.hash_sha512 import hash_sha512
 
 
@@ -26,6 +27,9 @@ def hash_gen(s, t):
     elif t == 'sha256':
         r = hash_sha256(s)
         print('calc sha256:{}'.format(r))
+    elif t == 'sha384':
+        r = hash_sha384(s)
+        print('calc sha384:{}'.format(r))
     elif t == 'sha512':
         r = hash_sha512(s)
         print('calc sha512:{}'.format(r))
