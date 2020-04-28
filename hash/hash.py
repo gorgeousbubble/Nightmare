@@ -7,6 +7,7 @@ from hash.hash_sha224 import hash_sha224
 from hash.hash_sha256 import hash_sha256
 from hash.hash_sha384 import hash_sha384
 from hash.hash_sha512 import hash_sha512
+from hash.hash_sha3_256 import hash_sha3_256
 
 
 def hash_gen(s, t):
@@ -33,5 +34,8 @@ def hash_gen(s, t):
     elif t == 'sha512':
         r = hash_sha512(s)
         print('calc sha512:{}'.format(r))
+    elif t == 'sha3_256':
+        r = hash_sha3_256(s)
+        print('calc sha3_256:{}'.format(r))
     else:
         print('Invalid hash algorithm. You can choose one of hash algorithm from support list.')
