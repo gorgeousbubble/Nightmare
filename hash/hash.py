@@ -12,6 +12,7 @@ from hash.hash_sha3_256 import hash_sha3_256
 from hash.hash_sha3_384 import hash_sha3_384
 from hash.hash_sha3_512 import hash_sha3_512
 from hash.hash_shake import hash_shake128, hash_shake256
+from hash.hash_blake2 import hash_blake2b, hash_blake2s
 
 
 def hash_gen(s, t):
@@ -56,5 +57,11 @@ def hash_gen(s, t):
     elif t == 'shake256':
         r = hash_shake256(s)
         print('calc shake256:{}'.format(r))
+    elif t == 'blake2b':
+        r = hash_blake2b(s)
+        print('calc blake2b:{}'.format(r))
+    elif t == 'blake2s':
+        r = hash_blake2s(s)
+        print('calc blake2s:{}'.format(r))
     else:
         print('Invalid hash algorithm. You can choose one of hash algorithm from support list.')
