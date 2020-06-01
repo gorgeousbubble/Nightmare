@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import hashlib
 from hash.hash_md5 import hash_md5, hash_md5_check
 from hash.hash_sha1 import hash_sha1, hash_sha1_check
 from hash.hash_sha224 import hash_sha224, hash_sha224_check
@@ -69,33 +68,63 @@ def hash_gen(s, t):
 
 def hash_check(s, r, t):
     # choose hash algorithm mode
+    b = False
     if t == 'md5':
-        print('check md5:{}'.format(hash_md5_check(s, r)))
+        b = hash_md5_check(s, r)
+        print('check md5:{}'.format(b))
+        return b
     elif t == 'sha1':
-        print('check sha1:{}'.format(hash_sha1_check(s, r)))
+        b = hash_sha1_check(s, r)
+        print('check sha1:{}'.format(b))
+        return b
     elif t == 'sha224':
-        print('check sha224:{}'.format(hash_sha224_check(s, r)))
+        b = hash_sha224_check(s, r)
+        print('check sha224:{}'.format(b))
+        return b
     elif t == 'sha256':
-        print('check sha256:{}'.format(hash_sha256_check(s, r)))
+        b = hash_sha256_check(s, r)
+        print('check sha256:{}'.format(b))
+        return b
     elif t == 'sha384':
-        print('check sha384:{}'.format(hash_sha384_check(s, r)))
+        b = hash_sha384_check(s, r)
+        print('check sha384:{}'.format(b))
+        return b
     elif t == 'sha512':
-        print('check sha512:{}'.format(hash_sha512_check(s, r)))
+        b = hash_sha512_check(s, r)
+        print('check sha512:{}'.format(b))
+        return b
     elif t == 'sha3_224':
-        print('check sha3_224:{}'.format(hash_sha3_224_check(s, r)))
+        b = hash_sha3_224_check(s, r)
+        print('check sha3_224:{}'.format(b))
+        return b
     elif t == 'sha3_256':
-        print('check sha3_256:{}'.format(hash_sha3_256_check(s, r)))
+        b = hash_sha3_256_check(s, r)
+        print('check sha3_256:{}'.format(b))
+        return b
     elif t == 'sha3_384':
-        print('check sha3_384:{}'.format(hash_sha3_384_check(s, r)))
+        b = hash_sha3_384_check(s, r)
+        print('check sha3_384:{}'.format(b))
+        return b
     elif t == 'sha3_512':
-        print('check sha3_512:{}'.format(hash_sha3_512_check(s, r)))
+        b = hash_sha3_512_check(s, r)
+        print('check sha3_512:{}'.format(b))
+        return b
     elif t == 'shake128':
-        print('check shake128:{}'.format(hash_shake128_check(s, r)))
+        b = hash_shake128_check(s, r)
+        print('check shake128:{}'.format(b))
+        return b
     elif t == 'shake256':
-        print('check shake256:{}'.format(hash_shake256_check(s, r)))
+        b = hash_shake256_check(s, r)
+        print('check shake256:{}'.format(b))
+        return b
     elif t == 'blake2b':
-        print('check blake2b:{}'.format(hash_blake2b_check(s, r)))
+        b = hash_blake2b_check(s, r)
+        print('check blake2b:{}'.format(b))
+        return b
     elif t == 'blake2s':
-        print('check blake2s:{}'.format(hash_blake2s_check(s, r)))
+        b = hash_blake2s_check(s, r)
+        print('check blake2s:{}'.format(b))
+        return b
     else:
         print('Invalid hash algorithm. You can choose one of hash algorithm from support list.')
+        return b
