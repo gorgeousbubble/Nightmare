@@ -15,3 +15,14 @@ class TestHash(unittest.TestCase):
         r = 'c0e84e870874dd37ed0d164c7986f03a'
         self.assertTrue(hash_check(s, r, 'md5'))
         print('hash md5 check pass')
+
+    def test_hash_sha1_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'sha1')
+        print('hash sha1 encode:', r)
+
+    def test_hash_sha1_check(self):
+        s = 'hello,world!'
+        r = '4518135c05e0706c0a34168996517bb3f28d94b5'
+        self.assertTrue(hash_check(s, r, 'sha1'))
+        print('hash sha1 check pass')
