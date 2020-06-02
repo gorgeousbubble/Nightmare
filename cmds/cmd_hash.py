@@ -9,7 +9,7 @@ def parse_cmd_hash(cmd_parser, sub_parser):
                             type=str, default='')
     sub_parser.add_argument('-t', '--type', help='algorithm type: calc with which hash '
                                                  'algorithms(md5, sha1, sha224, sha256, sha384, sha512, sha3_224, '
-                                                 'sha3_256, sha3_384, sha3_512)',
+                                                 'sha3_256, sha3_384, sha3_512, shake128, shake256, blake2b, blake2s)',
                             type=str, default='')
     args = cmd_parser.parse_args()
     # generate hash code
