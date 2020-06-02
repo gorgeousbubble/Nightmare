@@ -37,3 +37,14 @@ class TestHash(unittest.TestCase):
         r = '8ca8306359700b64b25a070da3c042dc8fa6a885427580d2b6d774f4'
         self.assertTrue(hash_check(s, r, 'sha224'))
         print('hash sha224 check pass')
+
+    def test_hash_sha256_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'sha256')
+        print('hash sha256 encode:', r)
+
+    def test_hash_sha256_check(self):
+        s = 'hello,world!'
+        r = 'ec1e0bd875226943ad0e8877bdba4ca449c4cb8591a5363921c9f1ee20084c34'
+        self.assertTrue(hash_check(s, r, 'sha256'))
+        print('hash sha256 check pass')
