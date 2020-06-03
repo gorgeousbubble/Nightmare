@@ -49,6 +49,17 @@ class TestHash(unittest.TestCase):
         self.assertTrue(hash_check(s, r, 'sha256'))
         print('hash sha256 check pass')
 
+    def test_hash_sha384_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'sha384')
+        print('hash sha384 encode:', r)
+
+    def test_hash_sha384_check(self):
+        s = 'hello,world!'
+        r = 'ceff8fdf21cc4e0f5217f7b674af88e5337636728d0d0b87acc28923a206d3a975443197253ceb306a3ff9b8e83f3c5a'
+        self.assertTrue(hash_check(s, r, 'sha384'))
+        print('hash sha384 check pass')
+
 
 if __name__ == '__main__':
     unittest.main()
