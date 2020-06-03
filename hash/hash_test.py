@@ -83,6 +83,17 @@ class TestHash(unittest.TestCase):
         self.assertTrue(hash_check(s, r, 'blake2b'))
         print('hash blake2b check pass')
 
+    def test_hash_blake2s_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'blake2s')
+        print('hash blake2s encode:', r)
+
+    def test_hash_blake2s_check(self):
+        s = 'hello,world!'
+        r = 'fec96d2115ab677ca3e7561ce32100bd'
+        self.assertTrue(hash_check(s, r, 'blake2s'))
+        print('hash blake2s check pass')
+
 
 if __name__ == '__main__':
     unittest.main()
