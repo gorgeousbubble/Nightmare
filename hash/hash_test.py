@@ -134,6 +134,17 @@ class TestHash(unittest.TestCase):
         self.assertTrue(hash_check(s, r, 'sha3_224'))
         print('hash sha3_224 check pass')
 
+    def test_hash_sha3_256_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'sha3_256')
+        print('hash sha3_256 encode:', r)
+
+    def test_hash_sha3_256_check(self):
+        s = 'hello,world!'
+        r = 'a2d2e46e20c995e295fadc00839288d74dd85b8feef8b778042427ab8ff6a5c5'
+        self.assertTrue(hash_check(s, r, 'sha3_256'))
+        print('hash sha3_256 check pass')
+
 
 if __name__ == '__main__':
     unittest.main()
