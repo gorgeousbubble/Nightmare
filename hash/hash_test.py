@@ -154,7 +154,19 @@ class TestHash(unittest.TestCase):
         s = 'hello,world!'
         r = '9f08f572fda8977e6a16abf5460a631fcd91d7f669efab1c9654afff28d2d52b230ca9189cd117d37ed0cfc2cb4c9223'
         self.assertTrue(hash_check(s, r, 'sha3_384'))
-        print('hash v check pass')
+        print('hash sha3_512 check pass')
+
+    def test_hash_sha3_512_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'sha3_512')
+        print('hash sha3_384 encode:', r)
+
+    def test_hash_sha3_512_check(self):
+        s = 'hello,world!'
+        r = '4ed8dc6739e8edaa481d548e7f93d7a6c63d833a75bcfbd615fd932c97e6f357316e10d488778b12d2b2004341b641c5' \
+            '4fa3a7942555bdcc1f672c3bfa578725'
+        self.assertTrue(hash_check(s, r, 'sha3_512'))
+        print('hash sha3_512 check pass')
 
 
 if __name__ == '__main__':
