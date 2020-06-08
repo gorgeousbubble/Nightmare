@@ -15,3 +15,7 @@ class TestHashSHA3224(unittest.TestCase):
         r = 'be93af91ae2dd882018a39e0769933340315aff480d880fe71913177'
         self.assertTrue(hash_sha3_224_check(s, r))
         print('hash sha3_224 check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
