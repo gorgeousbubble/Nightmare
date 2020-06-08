@@ -26,3 +26,7 @@ class TestHashBlake2(unittest.TestCase):
         r = 'fec96d2115ab677ca3e7561ce32100bd'
         self.assertTrue(hash_blake2s_check(s, r))
         print('hash blake2s check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
