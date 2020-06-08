@@ -15,3 +15,7 @@ class TestHashMD5(unittest.TestCase):
         r = 'c0e84e870874dd37ed0d164c7986f03a'
         self.assertTrue(hash_md5_check(s, r))
         print('hash md5 check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
