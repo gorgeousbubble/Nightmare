@@ -15,3 +15,7 @@ class TestHashSHA1(unittest.TestCase):
         r = '4518135c05e0706c0a34168996517bb3f28d94b5'
         self.assertTrue(hash_sha1_check(s, r))
         print('hash sha1 check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
