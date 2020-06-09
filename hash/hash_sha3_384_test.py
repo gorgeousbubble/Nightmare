@@ -15,3 +15,7 @@ class TestHashSHA3384(unittest.TestCase):
         r = '9f08f572fda8977e6a16abf5460a631fcd91d7f669efab1c9654afff28d2d52b230ca9189cd117d37ed0cfc2cb4c9223'
         self.assertTrue(hash_sha3_384_check(s, r))
         print('hash sha3_384 check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
