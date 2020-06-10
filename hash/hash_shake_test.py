@@ -33,3 +33,7 @@ class TestHashShake(unittest.TestCase):
             '9a438205fdf018bc7'
         self.assertTrue(hash_shake256_check(s, r))
         print('hash shake256 check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
