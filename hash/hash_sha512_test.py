@@ -16,3 +16,7 @@ class TestHashSHA512(unittest.TestCase):
             '5294d5d46fb5e0158240441b94cd96510c2311bdc86870e5ebf3efe60c'
         self.assertTrue(hash_sha512_check(s, r))
         print('hash sha512 check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
