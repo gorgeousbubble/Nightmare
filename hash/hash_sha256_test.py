@@ -15,3 +15,7 @@ class TestHashSHA256(unittest.TestCase):
         r = 'ec1e0bd875226943ad0e8877bdba4ca449c4cb8591a5363921c9f1ee20084c34'
         self.assertTrue(hash_sha256_check(s, r))
         print('hash sha256 check pass')
+
+
+if __name__ == '__main__':
+    unittest.main()
