@@ -10,4 +10,7 @@ The package is mainly used for hash calculate and checksum which has been realiz
 #### Hash calculate and checksum
   * The hash package offer interfaces let program easy to realize hash calculate and checksum.
   * You can use the function 'hash_gen(s, t)' to generate a hash code, 's' indicate the original string which you want to calculate hash, 't' stand for hash algorithm like 'md5', 'sha1', etc.
-  * You can use the function 'hash_check(s, r, t)' to checksum with hash code. If check success, it will return 'True', otherwise 'False'. So we can check file independence. 
+  * You can use the function 'hash_check(s, r, t)' to checksum with hash code. If check success, it will return 'True', otherwise 'False'. So we can check file independence.
+  * The package is useful and light.
+
+## Usage of interfaces
