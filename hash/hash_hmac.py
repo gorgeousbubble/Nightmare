@@ -11,3 +11,8 @@ def hash_hmac_md5(s, k):
 def hash_hmac_sha1(s, k):
     h = hmac.new(k.encode('utf-8'), s.encode('utf-8'), 'SHA1')
     return h.hexdigest()
+
+
+def hash_hmac_sha256(s, k):
+    h = hmac.new(k.encode('utf-8'), s.encode('utf-8'), 'SHA256')
+    return h.hexdigest()
