@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import unittest
-from .hash_hmac import hash_hmac_md5_encode, hash_hmac_sha1_encode
+from .hash_hmac import hash_hmac_md5_encode, hash_hmac_sha1_encode, hash_hmac_sha256_encode
 
 
 class TestHashHMAC(unittest.TestCase):
@@ -14,6 +14,11 @@ class TestHashHMAC(unittest.TestCase):
         s = 'hello,world!'
         r = hash_hmac_sha1_encode(s, '')
         print('hash hmac sha1 encode:', r)
+
+    def test_hash_hmac_sha256_encode(self):
+        s = 'hello,world!'
+        r = hash_hmac_sha256_encode(s, '')
+        print('hash hmac sha256 encode:', r)
 
 
 if __name__ == '__main__':
