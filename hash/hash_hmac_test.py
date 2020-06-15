@@ -9,3 +9,7 @@ class TestHashHMAC(unittest.TestCase):
         s = 'hello,world!'
         r = hash_hmac_md5_encode(s, '')
         print('hash hmac md5 encode:', r)
+
+
+if __name__ == '__main__':
+    unittest.main()
