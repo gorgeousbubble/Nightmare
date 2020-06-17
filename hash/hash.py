@@ -12,6 +12,7 @@ from hash.hash_sha3_384 import hash_sha3_384, hash_sha3_384_check
 from hash.hash_sha3_512 import hash_sha3_512, hash_sha3_512_check
 from hash.hash_shake import hash_shake128, hash_shake256, hash_shake128_check, hash_shake256_check
 from hash.hash_blake2 import hash_blake2b, hash_blake2s, hash_blake2b_check, hash_blake2s_check
+from hash.hash_hmac import hash_hmac_md5, hash_hmac_sha1, hash_hmac_sha256, hash_hmac_sha512
 
 
 def hash_gen(s, t):
@@ -62,6 +63,18 @@ def hash_gen(s, t):
     elif t == 'blake2s':
         r = hash_blake2s(s)
         print('calc blake2s:{}'.format(r))
+    elif t == 'hmac_md5':
+        r = hash_hmac_md5(s, '')
+        print('calc hmac md5:{}'.format(r))
+    elif t == 'hmac_sha1':
+        r = hash_hmac_sha1(s, '')
+        print('calc hmac sha1:{}'.format(r))
+    elif t == 'hmac_sha256':
+        r = hash_hmac_sha256(s, '')
+        print('calc hmac sha256:{}'.format(r))
+    elif t == 'hmac_sha512':
+        r = hash_hmac_sha512(s, '')
+        print('calc hmac sha512:{}'.format(r))
     else:
         print('Invalid hash algorithm. You can choose one of hash algorithm from support list.')
 
