@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from .hash_hmac import hash_hmac_md5_encode, hash_hmac_sha1_encode, hash_hmac_sha256_encode, hash_hmac_sha512_encode,\
-    hash_hmac_md5_check
+    hash_hmac_md5_check, hash_hmac_sha1_check
 
 
 class TestHashHMAC(unittest.TestCase):
@@ -30,6 +30,11 @@ class TestHashHMAC(unittest.TestCase):
         s = 'hello,world!'
         r = '2db9a138d9070e0fda961ce2433fd44a'
         self.assertTrue(hash_hmac_md5_check(s, '', r))
+
+    def test_hash_hmac_sha1_check(self):
+        s = 'hello,world!'
+        r = '97f4bedc9c92ac01026407d0dd04e3afd682e519'
+        self.assertTrue(hash_hmac_sha1_check(s, '', r))
 
 
 if __name__ == '__main__':
