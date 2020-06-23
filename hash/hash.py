@@ -142,15 +142,19 @@ def hash_check(s, r, t):
     elif t == 'hmac_md5':
         b = hash_hmac_md5_check(s, '', r)
         print('check hmac md5:{}'.format(b))
+        return b
     elif t == 'hmac_sha1':
         b = hash_hmac_sha1_check(s, '', r)
         print('check hmac sha1:{}'.format(b))
+        return b
     elif t == 'hmac_sha256':
         b = hash_hmac_sha256_check(s, '', r)
         print('check hmac sha256:{}'.format(b))
+        return b
     elif t == 'hmac_sha512':
         b = hash_hmac_sha512_check(s, '', r)
         print('check hmac sha512:{}'.format(b))
+        return b
     else:
         print('Invalid hash algorithm. You can choose one of hash algorithm from support list.')
         return b

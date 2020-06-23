@@ -168,6 +168,17 @@ class TestHash(unittest.TestCase):
         self.assertTrue(hash_check(s, r, 'sha3_512'))
         print('hash sha3_512 check pass')
 
+    def test_hash_hmac_md5_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'hmac_md5')
+        print('hash hmac_md5 encode:', r)
+
+    def test_hash_hmac_md5_check(self):
+        s = 'hello,world!'
+        r = '2db9a138d9070e0fda961ce2433fd44a'
+        self.assertTrue(hash_check(s, r, 'hmac_md5'))
+        print('hash hmac_md5 check pass')
+
 
 if __name__ == '__main__':
     unittest.main()
