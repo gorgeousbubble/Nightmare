@@ -14,3 +14,4 @@ The package is mainly used for hash calculate and checksum which has been realiz
   * The package is useful and light.
 
 ## Usage of interfaces
+There are many interfaces in this package. The hash package offer two function to generate hash code and check hash code called 'hash_gen' and 'hash_check'. Certainly, you can also use the others interface to realize more function.
