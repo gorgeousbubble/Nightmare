@@ -190,6 +190,17 @@ class TestHash(unittest.TestCase):
         self.assertTrue(hash_check(s, r, 'hmac_sha1'))
         print('hash hmac_sha1 check pass')
 
+    def test_hash_hmac_sha256_encode(self):
+        s = 'hello,world!'
+        r = hash_gen(s, 'hmac_sha256')
+        print('hash hmac_sha256 encode:', r)
+
+    def test_hash_hmac_sha256_check(self):
+        s = 'hello,world!'
+        r = 'b3573c8ed2a62017f5503f06e78549fe1a55355c1e7e1f925bdb8f0b9c8a029f'
+        self.assertTrue(hash_check(s, r, 'hmac_sha256'))
+        print('hash hmac_sha256 check pass')
+
 
 if __name__ == '__main__':
     unittest.main()
