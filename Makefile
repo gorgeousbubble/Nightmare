@@ -24,7 +24,7 @@ all: build
 
 .PHONY: help
 help:
-    @echo "make build"
+	@echo "make build"
     @echo "       build app as a binary"
     @echo "make clean"
     @echo "       clean build cache files"
@@ -54,7 +54,7 @@ clean:
 
 .PHONY: venv
 venv:
-    $(PYTHON) -m venv venv
+	$(PYTHON) -m venv venv
     source ./venv/bin/activate
 
 .PHONY: test
