@@ -206,7 +206,7 @@ class TestHash(unittest.TestCase):
         r = hash_gen(s, 'hmac_sha512')
         print('hash hmac_sha512 encode:', r)
 
-    def test_hash_hmac_sha256_check(self):
+    def test_hash_hmac_sha512_check(self):
         s = 'hello,world!'
         r = 'e80ef886694e53473de1e01e328e40dd20289e2f7a61f4a93b036259343ee02a7d5026dffa10847077f4e8486d7c1ce20' \
             'b697c7ce8d8decddf91bef3ff78f4c8'

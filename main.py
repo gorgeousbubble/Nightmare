@@ -3,20 +3,18 @@
 import argparse
 import logging
 import sys
-import os
-from const import APPLICATION_NAME
-from const import LOGS_DIR
-from const import LOGS_TARGET
+
+from cmds import parse_cmd_hash
 from cmds import parse_cmd_help
 from cmds import parse_cmd_tcp
 from cmds import parse_cmd_udp
-from cmds import parse_cmd_hash
+from const import APPLICATION_NAME
+from const import LOGS_DIR
+from const import LOGS_TARGET
 from logs import Log
-
 
 # initialize logger instance
 log = Log(target=LOGS_TARGET, level=logging.DEBUG, path=LOGS_DIR, app=APPLICATION_NAME)
-
 
 # application start
 if __name__ == '__main__':
