@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import unittest
+
 from console import Console
 from console import ConsoleLevel
 
