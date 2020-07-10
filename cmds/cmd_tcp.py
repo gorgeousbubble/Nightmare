@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from nets import start_tcp_server
 from nets import start_tcp_client
+from nets import start_tcp_server
 
 
 def parse_cmd_tcp(cmd_parser, sub_parser):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import threading
 import functools
+import threading
 
 
 class ConsoleLevel(object):
@@ -25,6 +25,7 @@ class Console(object):
             ret = func(*args, **kwargs)
             Console.lock.release()
             return ret
+
         return wrapper
 
     @staticmethod

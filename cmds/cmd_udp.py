@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from nets import start_udp_server
 from nets import start_udp_client
+from nets import start_udp_server
 
 
 def parse_cmd_udp(cmd_parser, sub_parser):
